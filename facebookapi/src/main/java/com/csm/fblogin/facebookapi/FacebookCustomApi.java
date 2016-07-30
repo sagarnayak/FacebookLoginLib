@@ -123,6 +123,9 @@ public class FacebookCustomApi {
         callbackManager.onActivityResult(requestCode, resultCode, data);
     }
 
+    /*
+    this function is called when we want to logout of the logged in facebook account.
+     */
     public void logoutFromFacebook() {
         LoginManager.getInstance().logOut();
         Log.i("log", "logout");

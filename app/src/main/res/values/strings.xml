@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">FacebookLogin</string>
+    <string name="action_settings">Settings</string>
+    <string name="facebook_appid">1768274953453944</string>
+</resources>

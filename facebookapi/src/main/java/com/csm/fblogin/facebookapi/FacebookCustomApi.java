@@ -128,7 +128,7 @@ public class FacebookCustomApi {
      */
     public void logoutFromFacebook() {
         LoginManager.getInstance().logOut();
-        Log.i("log", "logout");
+        Log.i("log", "logged out of the device");
     }
 
     public ArrayList<HashMap<String, String>> getValues() {

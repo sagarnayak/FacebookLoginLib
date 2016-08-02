@@ -40,10 +40,10 @@ import java.util.HashMap;
  *                 android:layout_centerVertical="true" />
  *   write this line before setContentView - FacebookSdk.sdkInitialize(MainActivity.this);
  *   create a instance of FacebookCustomApi and pass activity context and Facebook Login Button Instance
- *                                 - FacebookCustomApi facebppkapi = new FacebookCutomApi(MainActivity.this,loginbutton);
+ *                                 - FacebookCustomApi facebookapi = new FacebookCustomApi(MainActivity.this,loginbutton);
  *   in onActivityResult() -
- *                                  if (requestCode == 64206) { //requst code for facebook api
- *                                       facebppkapi.ActivityResult(requestCode, resultCode, data);
+ *                                  if (requestCode == 64206) { //request code for facebook api
+ *                                       facebookapi.ActivityResult(requestCode, resultCode, data);
  *                                   }
  *  now you can use the reference of the facebookcustomapi to get the values through function, after you login.
  */

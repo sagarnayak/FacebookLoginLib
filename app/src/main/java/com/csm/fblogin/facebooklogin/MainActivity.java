@@ -14,6 +14,11 @@ import com.csm.fblogin.facebookapi.FacebookCustomApi;
 import com.facebook.FacebookSdk;
 import com.facebook.login.widget.LoginButton;
 
+/*
+author - sagar nayak
+date- 18 july 2016
+desc - this is a class which implements the facebook lib and can be used as an example to implement this in another class.
+ */
 public class MainActivity extends AppCompatActivity {
 
     FacebookCustomApi facebookCustomApi;
@@ -31,19 +36,9 @@ public class MainActivity extends AppCompatActivity {
         final LoginButton loginButton = (LoginButton) findViewById(R.id.login_button);
         facebookCustomApi = new FacebookCustomApi(MainActivity.this, loginButton);
 
-//        Thread thread = new Thread(new Runnable() {
-//            @Override
-//            public void run() {
-//                try {
-//                    Thread.sleep(30000);
-//                    facebookCustomApi.logoutFromFacebook();
-//                } catch (InterruptedException e) {
-//                    e.printStackTrace();
-//                }
-//            }
-//        });
-//        thread.start();
-
+        /*
+        button to get the data fetched from facebook api in a arraylist.
+         */
         ((Button) findViewById(R.id.button)).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -77,7 +72,10 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        facebookCustomApi.ActivityResult(requestCode, resultCode, data);
+        if (requestCode == 64206) { //requst code for facebook api
+            Log.i("log", "facebook api result : " + requestCode + " " + resultCode + " " + data);
+            facebookCustomApi.ActivityResult(requestCode, resultCode, data);
+        }
     }
 
     @Override

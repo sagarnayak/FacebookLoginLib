@@ -28,6 +28,24 @@ import java.util.HashMap;
 /**
  * Created by sagar on 7/29/2016.
  * library project to do the facebook api work in android project.
+ * this lib does the internal work in getting the data from facebook api.
+ * How To Use -
+ *    create facebook app id for your app and set it in your app manifest.
+ *    use the login button fragment in your layout to place the facebook login button-
+ *                 <com.facebook.login.widget.LoginButton
+ *                 android:id="@+id/login_button"
+ *                 android:layout_width="wrap_content"
+ *                 android:layout_height="wrap_content"
+ *                 android:layout_centerHorizontal="true"
+ *                 android:layout_centerVertical="true" />
+ *   write this line before setContentView - FacebookSdk.sdkInitialize(MainActivity.this);
+ *   create a instance of FacebookCustomApi and pass activity context and Facebook Login Button Instance
+ *                                 - FacebookCustomApi facebppkapi = new FacebookCutomApi(MainActivity.this,loginbutton);
+ *   in onActivityResult() -
+ *                                  if (requestCode == 64206) { //requst code for facebook api
+ *                                       facebppkapi.ActivityResult(requestCode, resultCode, data);
+ *                                   }
+ *  now you can use the reference of the facebookcustomapi to get the values through function, after you login.
  */
 public class FacebookCustomApi {
 
@@ -43,6 +61,7 @@ public class FacebookCustomApi {
         this.loginButton = facebookloginButton;
         callbackManager = CallbackManager.Factory.create();
         AppEventsLogger.activateApp(c);
+        values = new ArrayList<HashMap<String, String>>();
         doLoginListener();
     }
 
@@ -118,7 +137,9 @@ public class FacebookCustomApi {
         });
     }
 
-
+    /*
+    this function is called from the calling activity when the onActivityResult is called. to call the callback manager function.
+     */
     public void ActivityResult(int requestCode, int resultCode, Intent data) {
         callbackManager.onActivityResult(requestCode, resultCode, data);
     }
@@ -127,10 +148,17 @@ public class FacebookCustomApi {
     this function is called when we want to logout of the logged in facebook account.
      */
     public void logoutFromFacebook() {
-        LoginManager.getInstance().logOut();
-        Log.i("log", "logged out of the device");
+        if (LoginManager.getInstance() != null) {
+            LoginManager.getInstance().logOut();
+            Log.i("log", "logged out of the device");
+        } else {
+            Log.i("log", "the loginmanager instance is null");
+        }
     }
 
+    /*
+    get all the values that are fetched from the facebook api.
+     */
     public ArrayList<HashMap<String, String>> getValues() {
         return values;
     }

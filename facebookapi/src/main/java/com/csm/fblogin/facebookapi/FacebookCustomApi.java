@@ -30,22 +30,22 @@ import java.util.HashMap;
  * library project to do the facebook api work in android project.
  * this lib does the internal work in getting the data from facebook api.
  * How To Use -
- *    create facebook app id for your app and set it in your app manifest.
- *    use the login button fragment in your layout to place the facebook login button-
- *                 <com.facebook.login.widget.LoginButton
- *                 android:id="@+id/login_button"
- *                 android:layout_width="wrap_content"
- *                 android:layout_height="wrap_content"
- *                 android:layout_centerHorizontal="true"
- *                 android:layout_centerVertical="true" />
- *   write this line before setContentView - FacebookSdk.sdkInitialize(MainActivity.this);
- *   create a instance of FacebookCustomApi and pass activity context and Facebook Login Button Instance
- *                                 - FacebookCustomApi facebookapi = new FacebookCustomApi(MainActivity.this,loginbutton);
- *   in onActivityResult() -
- *                                  if (requestCode == 64206) { //request code for facebook api
- *                                       facebookapi.ActivityResult(requestCode, resultCode, data);
- *                                   }
- *  now you can use the reference of the facebookcustomapi to get the values through function, after you login.
+ * create facebook app id for your app and set it in your app manifest.
+ * use the login button fragment in your layout to place the facebook login button-
+ * <com.facebook.login.widget.LoginButton
+ * android:id="@+id/login_button"
+ * android:layout_width="wrap_content"
+ * android:layout_height="wrap_content"
+ * android:layout_centerHorizontal="true"
+ * android:layout_centerVertical="true" />
+ * write this line before setContentView - FacebookSdk.sdkInitialize(MainActivity.this);
+ * create a instance of FacebookCustomApi and pass activity context and Facebook Login Button Instance
+ * - FacebookCustomApi facebookapi = new FacebookCustomApi(MainActivity.this,loginbutton);
+ * in onActivityResult() -
+ * if (requestCode == 64206) { //request code for facebook api
+ * facebookapi.ActivityResult(requestCode, resultCode, data);
+ * }
+ * now you can use the reference of the facebookcustomapi to get the values through function, after you login.
  */
 public class FacebookCustomApi {
 
@@ -96,6 +96,16 @@ public class FacebookCustomApi {
                                                 temp.put("id", object.getString("id").toString());
                                                 values.add(temp);
                                                 temp.put("first_name", object.getString("first_name").toString());
+                                                values.add(temp);
+                                                temp.put("last_name", object.getString("last_name").toString());
+                                                values.add(temp);
+                                                temp.put("age_range", object.getString("age_range").toString());
+                                                values.add(temp);
+                                                temp.put("picture", object.getString("picture").toString());
+                                                values.add(temp);
+                                                temp.put("timezone", object.getString("timezone").toString());
+                                                values.add(temp);
+                                                temp.put("updated_time", object.getString("updated_time").toString());
                                                 values.add(temp);
                                                 temp.put("link", object.getString("link").toString());
                                                 values.add(temp);
